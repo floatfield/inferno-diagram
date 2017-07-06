@@ -1,0 +1,83 @@
+@import "/stylesheets/settings.css";
+@import "/stylesheets/ellipseSettings.css";
+@import "/stylesheets/toolbar.css";
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font: 14px Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+diagram svg>*:hover {
+    fill-opacity: .5;
+    stroke-opacity: .5;
+}
+
+.selection {
+    stroke: #00796b;
+    stroke-linecap: round;
+    fill: #00796b;
+    fill-opacity: 0.15;
+    pointer-events: none;
+}
+
+.selection-handle {
+    fill: #00796b;
+}
+
+.app {
+    display: flex;
+    flex-direction: row;
+    min-width: 450px;
+    justify-content: center;
+}
+
+.content {
+    flex: 1 0 auto;
+    padding: 0px 50px;
+}
+
+.diagram {
+    min-width: 300px;
+}
+
+.app svg {
+    border: 1px solid #00796b;
+    border-radius: 3px;
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
+footer {
+    padding: 20px 50px;
+    color: white;
+    background-color: #00796B;
+}
+
+.links {
+    padding-bottom: 10px;
+    list-style-type: none;
+}
+
+header {
+    padding-left: 50px;
+    background-color: #00796b;
+    color: white;
+}
+
+header h2 {
+    margin-bottom: 0;
+}
+
+header p {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.7);
+}
