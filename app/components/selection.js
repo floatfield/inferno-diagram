@@ -11,8 +11,8 @@ function Selection ( props ) {
     const selectionCoords = getSelectionCoords(props);
     if (selectionCoords) {
         const { x, y, width, height } = selectionCoords;
-        const selectionHandlesCoords = getSelectionHandlesCoords(selectionCoords);
-        const handles = selectionHandlesCoords.map(drawResizeHandle.bind(null, props));
+        const resizeHandleCoordinates = getSelectionHandlesCoords(selectionCoords);
+        const handles = resizeHandleCoordinates.map(drawResizeHandle.bind(null, props));
         return (
                 <g mouseMove={ props.drag }>
                     <rect
@@ -65,28 +65,24 @@ function getLineSelectionCoords(properties) {
     };
 }
 
-function drawResizeHandle(props, { x, y, transformDragPosition }) {
+function drawResizeHandle(props, resizeHandleCoordinates) {
+    const { basePoint, basicVectors } = resizeHandleCoordinates;
     return (
         <rect
             className="selection-handle"
-            x={ x - 3 }
-            y={ y - 3 }
+            x={ basePoint.x + basicVectors.i[0] - 3 }
+            y={ basePoint.y + basicVectors.j[1] - 3 }
             width={ 6 }
             height={ 6 }
-            onMouseDown={ dragStart.bind(null, transformDragPosition, props) }
+            onMouseDown={ dragStart.bind(null, resizeHandleCoordinates, props) }
         />
     );
 }
 
-function dragStart(transformDragPosition, props, e) {
+function dragStart(resizeHandleCoordinates, props, e) {
     const { dispatch } = props;
-    const { offsetX, offsetY } = e;
     dispatch({
         type: "RESIZE_START",
-        payload: {
-            x: offsetX,
-            y: offsetY,
-            transformDragPosition
-        }
+        payload: resizeHandleCoordinates
     });
 }
